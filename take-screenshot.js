@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const URL = require('url').URL;
+const path = require('path');
 
 function generateFilename(urlStr) {
   const myUrl = new URL(urlStr);
@@ -9,13 +10,16 @@ function generateFilename(urlStr) {
   return `${protocol}-${myUrl.hostname}-${port}`;
 }
 
-async function takeScreenshot(url) {
+async function takeScreenshot(url, outputFolder='./') {
+  const saveFolder = path.resolve(process.cwd(), outputFolder);
+
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(url);
 
   console.log(`Taking screenshot of ${url}.`);
-  await page.screenshot({path: `${generateFilename(url)}.png`});
+
+  await page.screenshot({path: `${saveFolder}/${generateFilename(url)}.png`});
 
   await browser.close();
 }

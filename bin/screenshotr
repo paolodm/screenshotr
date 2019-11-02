@@ -1,8 +1,11 @@
+#!/usr/bin/node
+
 const minimist = require('minimist');
 const argv = minimist(process.argv.slice(2));
 const takeScreenshot = require('../take-screenshot');
 const url = argv.url;
+const outputDir = argv['output-dir'] || './';
 
 (async function() {
-  await takeScreenshot(url);
+  await takeScreenshot(url, outputDir);
 })();
