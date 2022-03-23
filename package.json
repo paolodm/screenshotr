@@ -4,7 +4,7 @@
   "description": "",
   "main": "take-screenshot.js",
   "dependencies": {
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.6",
     "puppeteer": "^2.0.0"
   },
   "devDependencies": {},
